@@ -1,0 +1,155 @@
+# The proper term is pseudo_replica_mode, but we use this compatibility alias
+# to make the statement usable on server versions 8.0.24 and older.
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=1*/;
+/*!50003 SET @OLD_COMPLETION_TYPE=@@COMPLETION_TYPE,COMPLETION_TYPE=0*/;
+DELIMITER /*!*/;
+# at 4
+#251002 16:09:47 server id 1  end_log_pos 127 CRC32 0x69b9b695 	Start: binlog v 4, server v 8.4.3 created 251002 16:09:47 at startup
+# Warning: this binlog is either in use or was not closed properly.
+ROLLBACK/*!*/;
+# at 127
+#251002 16:09:47 server id 1  end_log_pos 158 CRC32 0x6e736880 	Previous-GTIDs
+# [empty]
+# at 158
+#251002 16:12:25 server id 1  end_log_pos 237 CRC32 0x3b37dadc 	Anonymous_GTID	last_committed=0	sequence_number=1	rbr_only=no	original_committed_timestamp=1759392745488705	immediate_commit_timestamp=1759392745488705	transaction_length=404
+# original_commit_timestamp=1759392745488705 (2025-10-02 16:12:25.488705 CST)
+# immediate_commit_timestamp=1759392745488705 (2025-10-02 16:12:25.488705 CST)
+/*!80001 SET @@session.original_commit_timestamp=1759392745488705*//*!*/;
+/*!80014 SET @@session.original_server_version=80403*//*!*/;
+/*!80014 SET @@session.immediate_server_version=80403*//*!*/;
+SET @@SESSION.GTID_NEXT= 'ANONYMOUS'/*!*/;
+# at 237
+#251002 16:12:25 server id 1  end_log_pos 562 CRC32 0x25278342 	Query	thread_id=8	exec_time=0	error_code=0	Xid = 6
+use `app_db`/*!*/;
+SET TIMESTAMP=1759392745/*!*/;
+SET @@session.pseudo_thread_id=8/*!*/;
+SET @@session.foreign_key_checks=1, @@session.sql_auto_is_null=0, @@session.unique_checks=1, @@session.autocommit=1/*!*/;
+SET @@session.sql_mode=1168113696/*!*/;
+SET @@session.auto_increment_increment=1, @@session.auto_increment_offset=1/*!*/;
+/*!\C latin1 *//*!*/;
+SET @@session.character_set_client=8,@@session.collation_connection=8,@@session.collation_server=255/*!*/;
+SET @@session.lc_time_names=0/*!*/;
+SET @@session.collation_database=DEFAULT/*!*/;
+SET @@session.explicit_defaults_for_timestamp=1/*!*/;
+/*!80011 SET @@session.default_collation_for_utf8mb4=255*//*!*/;
+/*!80013 SET @@session.sql_require_primary_key=0*//*!*/;
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer VARCHAR(100) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+/*!*/;
+# at 562
+#251002 16:12:25 server id 1  end_log_pos 641 CRC32 0x6a19f487 	Anonymous_GTID	last_committed=1	sequence_number=2	rbr_only=yes	original_committed_timestamp=1759392745492537	immediate_commit_timestamp=1759392745492537	transaction_length=378
+/*!50718 SET TRANSACTION ISOLATION LEVEL READ COMMITTED*//*!*/;
+# original_commit_timestamp=1759392745492537 (2025-10-02 16:12:25.492537 CST)
+# immediate_commit_timestamp=1759392745492537 (2025-10-02 16:12:25.492537 CST)
+/*!80001 SET @@session.original_commit_timestamp=1759392745492537*//*!*/;
+/*!80014 SET @@session.original_server_version=80403*//*!*/;
+/*!80014 SET @@session.immediate_server_version=80403*//*!*/;
+SET @@SESSION.GTID_NEXT= 'ANONYMOUS'/*!*/;
+# at 641
+#251002 16:12:25 server id 1  end_log_pos 718 CRC32 0xd84eddb7 	Query	thread_id=8	exec_time=0	error_code=0
+SET TIMESTAMP=1759392745/*!*/;
+BEGIN
+/*!*/;
+# at 718
+#251002 16:12:25 server id 1  end_log_pos 788 CRC32 0xb01e7061 	Table_map: `app_db`.`orders` mapped to number 85
+# has_generated_invisible_primary_key=0
+# at 788
+#251002 16:12:25 server id 1  end_log_pos 909 CRC32 0x25e464b1 	Write_rows: table id 85 flags: STMT_END_F
+### INSERT INTO `app_db`.`orders`
+### SET
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Alice' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=120.50 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='PENDING' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+### INSERT INTO `app_db`.`orders`
+### SET
+###   @1=2 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Bob' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=87.30 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='PAID' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+### INSERT INTO `app_db`.`orders`
+### SET
+###   @1=3 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Charlie' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=42.00 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='CANCELLED' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+# at 909
+#251002 16:12:25 server id 1  end_log_pos 940 CRC32 0xff7407e5 	Xid = 7
+COMMIT/*!*/;
+# at 940
+#251002 16:12:25 server id 1  end_log_pos 1019 CRC32 0xdb2de3ae 	Anonymous_GTID	last_committed=2	sequence_number=3	rbr_only=yes	original_committed_timestamp=1759392745493547	immediate_commit_timestamp=1759392745493547	transaction_length=360
+/*!50718 SET TRANSACTION ISOLATION LEVEL READ COMMITTED*//*!*/;
+# original_commit_timestamp=1759392745493547 (2025-10-02 16:12:25.493547 CST)
+# immediate_commit_timestamp=1759392745493547 (2025-10-02 16:12:25.493547 CST)
+/*!80001 SET @@session.original_commit_timestamp=1759392745493547*//*!*/;
+/*!80014 SET @@session.original_server_version=80403*//*!*/;
+/*!80014 SET @@session.immediate_server_version=80403*//*!*/;
+SET @@SESSION.GTID_NEXT= 'ANONYMOUS'/*!*/;
+# at 1019
+#251002 16:12:25 server id 1  end_log_pos 1105 CRC32 0x121d4555 	Query	thread_id=8	exec_time=0	error_code=0
+SET TIMESTAMP=1759392745/*!*/;
+BEGIN
+/*!*/;
+# at 1105
+#251002 16:12:25 server id 1  end_log_pos 1175 CRC32 0x2c3eafe6 	Table_map: `app_db`.`orders` mapped to number 85
+# has_generated_invisible_primary_key=0
+# at 1175
+#251002 16:12:25 server id 1  end_log_pos 1269 CRC32 0xb82b6046 	Update_rows: table id 85 flags: STMT_END_F
+### UPDATE `app_db`.`orders`
+### WHERE
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Alice' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=120.50 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='PENDING' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+### SET
+###   @1=1 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Alice' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=120.50 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='SHIPPED' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+# at 1269
+#251002 16:12:25 server id 1  end_log_pos 1300 CRC32 0x9d4d7ff4 	Xid = 8
+COMMIT/*!*/;
+# at 1300
+#251002 16:12:25 server id 1  end_log_pos 1379 CRC32 0xaa464b06 	Anonymous_GTID	last_committed=2	sequence_number=4	rbr_only=yes	original_committed_timestamp=1759392745494268	immediate_commit_timestamp=1759392745494268	transaction_length=325
+/*!50718 SET TRANSACTION ISOLATION LEVEL READ COMMITTED*//*!*/;
+# original_commit_timestamp=1759392745494268 (2025-10-02 16:12:25.494268 CST)
+# immediate_commit_timestamp=1759392745494268 (2025-10-02 16:12:25.494268 CST)
+/*!80001 SET @@session.original_commit_timestamp=1759392745494268*//*!*/;
+/*!80014 SET @@session.original_server_version=80403*//*!*/;
+/*!80014 SET @@session.immediate_server_version=80403*//*!*/;
+SET @@SESSION.GTID_NEXT= 'ANONYMOUS'/*!*/;
+# at 1379
+#251002 16:12:25 server id 1  end_log_pos 1456 CRC32 0x6f63b45c 	Query	thread_id=8	exec_time=0	error_code=0
+SET TIMESTAMP=1759392745/*!*/;
+BEGIN
+/*!*/;
+# at 1456
+#251002 16:12:25 server id 1  end_log_pos 1526 CRC32 0x8c6aa150 	Table_map: `app_db`.`orders` mapped to number 85
+# has_generated_invisible_primary_key=0
+# at 1526
+#251002 16:12:25 server id 1  end_log_pos 1594 CRC32 0x6fabb3ba 	Delete_rows: table id 85 flags: STMT_END_F
+### DELETE FROM `app_db`.`orders`
+### WHERE
+###   @1=3 /* INT meta=0 nullable=0 is_null=0 */
+###   @2='Charlie' /* VARSTRING(400) meta=400 nullable=0 is_null=0 */
+###   @3=42.00 /* DECIMAL(10,2) meta=2562 nullable=0 is_null=0 */
+###   @4='CANCELLED' /* VARSTRING(80) meta=80 nullable=0 is_null=0 */
+###   @5=1759392745 /* TIMESTAMP(0) meta=0 nullable=1 is_null=0 */
+# at 1594
+#251002 16:12:25 server id 1  end_log_pos 1625 CRC32 0x1a6e940e 	Xid = 9
+COMMIT/*!*/;
+SET @@SESSION.GTID_NEXT= 'AUTOMATIC' /* added by mysqlbinlog */ /*!*/;
+DELIMITER ;
+# End of log file
+/*!50003 SET COMPLETION_TYPE=@OLD_COMPLETION_TYPE*/;
+/*!50530 SET @@SESSION.PSEUDO_SLAVE_MODE=0*/;
